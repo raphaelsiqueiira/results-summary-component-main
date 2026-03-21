@@ -1,0 +1,81 @@
+:root {
+  /* Colors*/
+  --clr-primary-1: hsl(252, 100%, 67%);
+  --clr-primary-2: hsla(256, 72%, 46%, 1);
+  --clr-secondary-1: hsl(241, 81%, 54%);
+  --clr-secondary-2: hsla(241, 72%, 46%, 0);
+
+  --clr-neutral-1: hsl(0, 0%, 100%);
+  --clr-neutral-2: hsl(221, 100%, 96%);
+  --clr-neutral-3: hsl(241, 100%, 89%);
+  --clr-neutral-4: hsl(224, 30%, 27%);
+
+  --clr-neutral-transparent-3: hsla(241, 100%, 89%, 40%);
+  --clr-neutral-transparent-4: hsla(224, 30%, 27%, 50%);
+
+  --gradient-primary: linear-gradient(var(--clr-primary-1), var(--clr-secondary-1));
+
+  --gradient-to-transparent: linear-gradient(var(--clr-primary-2), var(--clr-secondary-2));
+
+  --clr-accent-1: hsl(0, 100%, 67%);
+  --clr-accent-transparent-1: hsla(0, 100%, 67%, 10%);
+  --clr-accent-2: hsl(39, 100%, 56%);
+  --clr-accent-transparent-2: hsla(39, 100%, 56%, 10%);
+  --clr-accent-3: hsl(166, 100%, 37%);
+  --clr-accent-transparent-3: hsla(166, 100%, 37%, 10%);
+  --clr-accent-4: hsl(234, 85%, 45%);
+  --clr-accent-transparent-4: hsla(234, 85%, 45%, 10%);
+
+  /* Font Family*/
+  --font-family-default: "HankenGrotesk";
+
+  /* Font Weight*/
+  --fw-regular: 500;
+  --fw-bold: 700;
+  --fw-black: 800;
+
+  /* Font Size */
+  --fs-400: 1.125rem;
+  --fs-500: 1.25rem;
+  --fs-600: 1.5rem;
+  --fs-700: 1.75rem;
+  --fs-800: 2rem;
+  --fs-900: 4rem;
+
+  /* Border Radius */
+  --radius-small: 0.5rem;
+  --radius-medium: 1.75rem;
+  --radius-large: 2rem;
+  --radius-circle: 50%;
+
+  /* Spacing (Paddings e Gaps) */
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2.25rem;
+  --space-xl: 3rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --clr-neutral-1: hsl(224, 30%, 15%);
+    --clr-neutral-2: hsl(224, 30%, 10%);
+    --clr-neutral-3: hsl(241, 20%, 80%);
+    --clr-neutral-4: hsl(0, 0%, 100%);
+
+    --clr-neutral-transparent-3: hsla(241, 100%, 89%, 15%);
+    --clr-neutral-transparent-4: hsla(0, 0%, 100%, 70%);
+
+    --clr-primary-1: hsl(252, 100%, 70%);
+    --clr-secondary-1: hsl(241, 81%, 60%);
+
+    --clr-accent-transparent-1: hsla(0, 100%, 67%, 20%);
+    --clr-accent-transparent-2: hsla(39, 100%, 56%, 20%);
+    --clr-accent-transparent-3: hsla(166, 100%, 37%, 20%);
+    --clr-accent-transparent-4: hsla(234, 85%, 45%, 20%);
+  }
+
+  .results__score-achieved,
+  .results__rank {
+    color: var(--clr-neutral-4) !important;
+  }
+}

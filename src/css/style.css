@@ -1,0 +1,10 @@
+@import "variables.css";
+@import "reset.css";
+@import "results-summary.css";
+
+@font-face {
+  font-family: "HankenGrotesk";
+  font-display: swap;
+  font-weight: 400 900;
+  src: url("../../assets/fonts/HankenGrotesk-VariableFont_wght.ttf") format("truetype");
+}

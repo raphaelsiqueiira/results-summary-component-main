@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <title>Frontend Mentor | Results summary component</title>
+  <link rel="stylesheet" href="src/css/style.css">
+
+</head>
+
+<body data-dark-theme>
+
+  <main class="container">
+    <article class="result-summary">
+      <section class="results">
+        <h1 class="results__title">Your Result</h1>
+        <p class="results__score">
+          <strong class="results__score-achieved" id="results-score-achieved">100</strong>
+          of 100
+        </p>
+        <section class="results__description">
+          <p class="results__rank" id="results-rank">Great</p>
+          <p class="results__text" id="results-text">You scored higher than 65% of the people who have taken these tests.</p>
+        </section>
+
+      </section>
+      <section class="summary">
+        <h2 class="summary__title">Summary</h2>
+        <section class="summary__score">
+          <ul class="summary__item-container" id="summary-item-container">
+            <!--Conteúdo carregado por fetch-->
+            <li>Ative o JavaScript para que a aplicação funcione corretamente</li>
+          </ul>
+        </section>
+        <button class="summary__button">Continue</button>
+      </section>
+    </article>
+  </main>
+
+  <script type="module" src="./src/js/script.js"></script>
+</body>
+
+</html>
