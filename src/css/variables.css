@@ -55,27 +55,25 @@
   --space-xl: 3rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --clr-neutral-1: hsl(224, 30%, 15%);
-    --clr-neutral-2: hsl(224, 30%, 10%);
-    --clr-neutral-3: hsl(241, 20%, 80%);
-    --clr-neutral-4: hsl(0, 0%, 100%);
+body[data-dark-theme] {
+  --clr-neutral-1: hsl(224, 30%, 15%);
+  --clr-neutral-2: hsl(224, 30%, 10%);
+  --clr-neutral-3: hsl(241, 20%, 80%);
+  --clr-neutral-4: hsl(0, 0%, 100%);
 
-    --clr-neutral-transparent-3: hsla(241, 100%, 89%, 15%);
-    --clr-neutral-transparent-4: hsla(0, 0%, 100%, 70%);
+  --clr-neutral-transparent-3: hsla(241, 100%, 89%, 15%);
+  --clr-neutral-transparent-4: hsla(0, 0%, 100%, 70%);
 
-    --clr-primary-1: hsl(252, 100%, 70%);
-    --clr-secondary-1: hsl(241, 81%, 60%);
+  --clr-primary-1: hsl(252, 100%, 70%);
+  --clr-secondary-1: hsl(241, 81%, 60%);
 
-    --clr-accent-transparent-1: hsla(0, 100%, 67%, 20%);
-    --clr-accent-transparent-2: hsla(39, 100%, 56%, 20%);
-    --clr-accent-transparent-3: hsla(166, 100%, 37%, 20%);
-    --clr-accent-transparent-4: hsla(234, 85%, 45%, 20%);
-  }
+  --clr-accent-transparent-1: hsla(0, 100%, 67%, 20%);
+  --clr-accent-transparent-2: hsla(39, 100%, 56%, 20%);
+  --clr-accent-transparent-3: hsla(166, 100%, 37%, 20%);
+  --clr-accent-transparent-4: hsla(234, 85%, 45%, 20%);
+}
 
-  .results__score-achieved,
-  .results__rank {
-    color: var(--clr-neutral-4) !important;
-  }
+body[data-dark-theme] .results__score-achieved,
+body[data-dark-theme] .results__rank {
+  color: var(--clr-neutral-4) !important;
 }
