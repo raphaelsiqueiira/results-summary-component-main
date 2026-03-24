@@ -19,7 +19,7 @@ body {
   border-radius: 0 0 var(--radius-medium) var(--radius-medium);
   overflow: hidden;
   width: 100%;
-  max-width: 736px;
+  max-width: 46rem;
 }
 
 .results,
@@ -92,7 +92,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  align-items: center;
   gap: var(--space-s);
 }
 

@@ -75,5 +75,5 @@ body[data-dark-theme] {
 
 body[data-dark-theme] .results__score-achieved,
 body[data-dark-theme] .results__rank {
-  color: var(--clr-neutral-4) !important;
+  color: var(--clr-neutral-4);
 }
