@@ -177,3 +177,24 @@ body {
     padding: var(--space-l);
   }
 }
+.btn__theme {
+  box-sizing: content-box;
+  position: absolute;
+  cursor: pointer;
+  width: var(--space-l);
+  height: var(--space-l);
+  background: var(--gradient-primary);
+  border-radius: var(--radius-circle);
+  border: none;
+  padding: 4px;
+  top: var(--space-s);
+  left: var(--space-s);
+}
+
+.button__theme-icon {
+  display: none;
+}
+
+.button__theme-icon[data-theme-active] {
+  display: block;
+}
