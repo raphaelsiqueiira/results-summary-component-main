@@ -2,31 +2,31 @@ export default class AddResults {
   constructor(
     containerSelector,
     jsonUrl,
-    result,
-    rankElement,
-    textRankElement
+    resultSelector,
+    rankSelector,
+    textRankSelector
   ) {
     this.summaryContainer = document.querySelector(containerSelector);
     this.jsonUrl = jsonUrl;
-    this.result = result;
-    this.rankElement = rankElement;
-    this.textRankElement = textRankElement;
+    this.resultSelector = resultSelector;
+    this.rankSelector = rankSelector;
+    this.textRankSelector = textRankSelector;
   }
 
-  // Busca pela url informada
+  // Fetch data from the provided URL
   async fetchData() {
     const response = await fetch(this.jsonUrl);
-    if (!response.ok) throw new Error("Erro ao carregar o JSON");
+    if (!response.ok) throw new Error("Error loading JSON file");
     return await response.json();
   }
 
-  // Cria o molde do elemento HTML
+  // Create the HTML template for each summary item
   createItemTemplate(item) {
     const li = document.createElement("li");
-    // Adiciona a classe base e a classe específica (ex: reaction)
+    // Add base class and category-specific class (e.g., reaction, memory)
     li.classList.add("summary__item", item.category.toLowerCase());
 
-    // Define o conteúdo interno
+    // Define internal content
     li.innerHTML = `
           <div>
             <img class="summary__icon" src="${item.icon}" alt="" aria-hidden="true">
@@ -40,27 +40,50 @@ export default class AddResults {
     return li;
   }
 
-  // Calcula o score atingido
+  // Calculate the average score
   calculateAverage(data) {
     const totalSum = data.reduce((acc, item) => acc + item.score, 0);
     return data.length > 0 ? Math.floor(totalSum / data.length) : 0;
   }
 
-  // Adiciona o texto do score atingido
+  // Update the numeric score in the DOM
   updateResultDOM(score) {
-    const resultElement = document.querySelector(this.result);
+    const resultElement = document.querySelector(this.resultSelector);
     if (!resultElement) {
-      console.warn("Não foi encontrado o elemento para adicionar o resultado");
+      console.warn("Result element not found to display the score.");
       return;
-    } else {
-      resultElement.textContent = score;
     }
+    this.animateValue(resultElement, score, 600);
   }
 
-  // Atualiza as frases de acordo com o score
+  // Animates a numeric value from 0 to the target
+  animateValue(element, target, duration = 1000) {
+    let startTimestamp = null;
+
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+
+      // Calculate progress (0 to 1)
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+
+      // Update element text with the current eased value
+      element.textContent = Math.floor(progress * target);
+
+      // Continue animation if progress is not finished
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  }
+
+  // Update feedback phrases based on the score achieved
   updateFeedbackDOM(score) {
-    const rankElement = document.querySelector(this.rankElement);
-    const textRankElement = document.querySelector(this.textRankElement);
+    const rankElement = document.querySelector(this.rankSelector);
+    const textRankElement = document.querySelector(this.textRankSelector);
+
+    if (!rankElement || !textRankElement) return;
 
     if (score > 90) {
       rankElement.textContent = "Excellent";
@@ -75,35 +98,42 @@ export default class AddResults {
     }
   }
 
-  // Monta e renderiza na tela
+  // Assemble and render components to the screen
   async render() {
     try {
       const data = await this.fetchData();
-      // Calcula a média da pontuação
+
+      // Calculate and update the top section (Result)
       const average = this.calculateAverage(data);
-      // Atualiza o score no elemento de resultado
       this.updateResultDOM(average);
       this.updateFeedbackDOM(average);
 
-      // Renderiza a lista do sumário
-      this.summaryContainer.innerHTML = "";
-      data.forEach((item) => {
-        const itemElement = this.createItemTemplate(item);
-        this.summaryContainer.appendChild(itemElement);
-      });
-    } catch (error) {
-      console.error("Falha na renderização:", error);
+      // Render the summary list
       if (this.summaryContainer) {
-        this.summaryContainer.innerHTML = "<p>Erro ao carregar dados</p>";
+        this.summaryContainer.innerHTML = "";
+        data.forEach((item) => {
+          const itemElement = this.createItemTemplate(item);
+          this.summaryContainer.appendChild(itemElement);
+
+          const scoreElement = itemElement.querySelector(".score-deco");
+          this.animateValue(scoreElement, item.score, 600);
+        });
+      }
+    } catch (error) {
+      console.error("Rendering failed:", error);
+      if (this.summaryContainer) {
+        this.summaryContainer.innerHTML =
+          "<p>Error loading data. Please try again later.</p>";
       }
     }
   }
 
+  // Initialize the class
   init() {
     if (this.summaryContainer) {
       this.render();
     } else {
-      console.warn(`Container não encontrado.`);
+      console.warn("Summary container not found.");
     }
     return this;
   }
